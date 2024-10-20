@@ -1,0 +1,24 @@
+extends layout
+
+block layout-content 
+    h1.text-center.border.border-bottom.p-2 #{title} 
+    div.container.row.justify-content-center
+        form.col-md-6.p-3(method="post", action="/tag/edit/submit")
+            input(type="hidden", name="tagId", value=editTag._id)
+            div.row.mb-2
+                div.col-sm-4
+                    label.form-label(for="tag") Tag:
+                div.col-sm-8 
+                    input.form-control(type="text", id="tag", name="tag", value=editTag.TagName)
+            div.row.mb-2 
+                div.col-sm-4
+                    label.form-label(for="color") Update your tag color: 
+                div.col-sm-8
+                    select.form-select(name="color" id="color")
+                        option(value="" disabled) -- please select --
+                        option(value="#FF69B4" selected=(editTag.Color === "#FF69B4")) #Red - Highlight
+                        option(value="#FFC107" selected=(editTag.Color === "#FFC107")) #Yellow - Technique
+                        option(value="#28A745" selected=(editTag.Color === "#28A745")) #Green - Industry
+            div.row.d-flex.flex-row.justify-content-evenly.align-items-center
+                button.col-sm-5.btn.btn-primary(type="submit") Update Tag
+                a.col-sm-5.btn.btn-secondary(href="/tag") Cancel

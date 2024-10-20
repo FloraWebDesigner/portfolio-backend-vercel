@@ -1,0 +1,47 @@
+extends layout
+
+block layout-content 
+    body(style="background: url('/img/main-bg.svg') no-repeat center center fixed; background-size: cover; min-height: 100vh;")
+        .wrapper.shadow
+            div.row.justify-content-center
+                div.col-md-9
+                    h1.text-center.my-5 Welcome to Flora's Portfolio 
+                        //-h1.text-center.my-5 #{title}
+                        span.text-primary API
+                        span &nbsp;and 
+                        span.text-primary Admin System
+            div.row.justify-content-center
+                div.col-md-7.mb-5                         
+                    ul.container.mt-2.mb-5.list-group.bg-color
+                        li.list-group-item.d-flex.justify-content-between.align-items-start
+                            div.ms-2.me-auto
+                                div.fw-bold Project Collection
+                                    span.badge.bg-primary.rounded-pill.ms-2 #{projCounts}
+                                | This includes project API and CRUD management
+                            div.btn-group                        
+                                button.btn.btn-primary Review
+                                button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(data-bs-toggle="dropdown" aria-expanded="false")
+                                    span.visually-hidden Toggle Dropdown
+                                ul.dropdown-menu.bg-color
+                                    li.dropdown-item
+                                        a.noStyle(href="/api/project/list") Project API
+                                    li.dropdown-item    
+                                        a.noStyle(href="project") Admin page 
+                                    li.dropdown-item    
+                                        a.noStyle(href="project/doc") Document 
+                        li.list-group-item.d-flex.justify-content-between.align-items-start
+                            div.ms-2.me-auto
+                                div.fw-bold Tag Collection
+                                    span.badge.bg-primary.rounded-pill.ms-2 #{tagCounts}
+                                | This includes tag API and CRUD management
+                            div.btn-group                        
+                                button.btn.btn-primary Review
+                                button.btn.btn-primary.dropdown-toggle.dropdown-toggle-split(data-bs-toggle="dropdown" aria-expanded="false")
+                                    span.visually-hidden Toggle Dropdown
+                                ul.dropdown-menu.bg-color
+                                    li.dropdown-item
+                                        a.noStyle(href="/api/tag/list") Tag API
+                                    li.dropdown-item
+                                        a.noStyle(href="tag") Admin page
+                                    li.dropdown-item    
+                                        a.noStyle(href="tag/doc") Document  

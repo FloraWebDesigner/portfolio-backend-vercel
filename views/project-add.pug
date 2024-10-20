@@ -1,0 +1,62 @@
+extends layout
+
+block layout-content 
+    h1.text-center.border.border-bottom.p-2 #{title} 
+    div.container.row.justify-content-center
+            form.col-md-6.p-3.bg-success-subtle.rounded-3(method="post", action="/project/add/submit",enctype="multipart/form-data")
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="projName") Project Name: 
+                    div.col-sm-9
+                        input.form-control(type="text", id="projName", name="projName", placeholder="input your project name" required)
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="desc") Description: 
+                    div.col-sm-9
+                        textarea.form-control(id="desc", name="desc", placeholder="simply describe your project")
+                //- need to update: tag option
+                div.row.mb-2
+                    div.row
+                        div.col-sm-5
+                            div.row
+                                label.form-label.mb-0(for="tagOption") Select your project tags:
+                            div.row.form-text
+                                div.d-flex.flex-row
+                                    p.me-1.fst-italic Cannot find? Add
+                                    a.me-1.fst-italic(href="/tag/add") new 
+                                    p.fst-italic tags 
+                        div.col-sm-7
+                            div.row
+                                each t in myTag
+                                    div.col-6.d-flex.align-items-center.mb-2
+                                        input.form-check-input(type="checkbox", id=t._id, name="tag[]", value=t._id)
+                                        label.form-check-label(for=t._id) #{t.TagName}
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="link") Project link: 
+                    div.col-sm-9
+                        input.form-control(type="text", id="link", name="link", placeholder="e.g. http://myproject.com" required)
+                div.row.mb-2
+                    div.row.m-0.p-0
+                        div.col-sm-3
+                            label.form-label(for="repo") Github Repo: 
+                        div.col-sm-9
+                            input.form-control(type="text", id="repo", name="repo", placeholder="e.g. http://myrepo.com" required)
+                    div.row.form-text
+                        div.d-flex.flex-row
+                            p.me-1.fst-italic Forget your repo? Go to
+                            a.me-1.fst-italic(href="https://github.com/") Github 
+                            p.fst-italic to check
+                //- need to update: upload image
+                div.row.mb-3
+                    div.col-sm-3
+                        label.form-label(for="screen") Upload your project screen 
+                    div.col-sm-9
+                        img(id="preview",alt="Current Screen", style="width: 15rem; height: 12rem;object-fit: cover; display: none;")
+                        input.form-control(type="file", id="screen", name="screen",accept="image/*" required)         
+                div.row.d-flex.flex-row.justify-content-evenly.align-items-center
+                    button.col-sm-5.btn.btn-primary(type="submit") Add Project
+                    a.col-sm-5.btn.btn-secondary(href="/project") Cancel
+
+    block scripts
+        script(type="module" src="/script.js")

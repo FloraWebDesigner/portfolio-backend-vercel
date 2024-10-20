@@ -1,0 +1,54 @@
+extends layout
+
+block layout-content 
+    h1.text-center.border.border-bottom.p-2 #{title} 
+    div.container.row.justify-content-center
+            form.col-md-6.p-3.bg-info-subtle.rounded-3(method="post", action="/project/edit/submit",enctype="multipart/form-data")
+                input(type="hidden", name="projId", value=editProj._id)
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="projName") Project Name: 
+                    div.col-sm-9
+                        input.form-control(type="text", id="projName", name="projName", value=editProj.ProjectName required)
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="desc") Description: 
+                    div.col-sm-9
+                        textarea.form-control(id="desc", name="desc")=editProj.Desc
+                div.row.mb-2
+                    div.row
+                        div.col-sm-5
+                            div.row
+                                label.form-label.mb-0(for="tagOption") Select your project tags:
+                            div.row.form-text
+                                div.d-flex.flex-row
+                                    p.me-1.fst-italic Cannot find? Add
+                                    a.me-1.fst-italic(href="/tag/add") new 
+                                    p.fst-italic tags 
+                        div.col-sm-7
+                            div.row
+                                each t in myTag
+                                    div.col-6.d-flex.align-items-center.mb-2
+                                        input.form-check-input(type="checkbox", id=t._id, name="tag[]", value=t._id, checked=editProj.Tags.includes(t._id))
+                                        label.form-check-label(for=t._id) #{t.TagName}
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="link") Link: 
+                    div.col-sm-9
+                        input.form-control(type="text", id="link", name="link",value=editProj.Link)
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="repo") Repo: 
+                    div.col-sm-9
+                        input.form-control(type="text", id="repo", name="repo",value=editProj.Repo)
+                div.row.mb-3
+                    div.col-sm-3
+                        label.form-label(for="screen") Update your image
+                    div.col-sm-9
+                        img(id="preview",src=`/img/${editProj.Img}` alt="Current Screen", style="width: 15rem; height: 12rem;object-fit: cover; display: block;" name="oldImg")
+                        input.form-control(type="file", id="screen", name="screen",accept="image/*" value=editProj.Img)         
+                button(type="submit") Update Project
+    
+    block scripts
+        script(type="module" src="/script.js")
+                

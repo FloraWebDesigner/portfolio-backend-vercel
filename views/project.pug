@@ -1,0 +1,43 @@
+extend layout 
+
+block layout-content 
+    .container.d-flex.flex-row.justify-content-between.align-items-center.mt-2
+        h1.text-center #{title} 
+        a.btn.btn-primary(href="/project/add") Add Project
+    div.container
+        table.table.table.table-striped.my-3
+            thead
+                tr.table-dark.fs-6.text-center
+                    th.col-1 Image
+                    th.col-2 Project Name
+                    th.col-3 Description
+                    th.col-1 Tag
+                    th.col-1 Project Link 
+                    th.col-1 Repo Link 
+                    th.col-1 Created
+                    th.col-2 Operation
+            tbody  
+                each proj in myProj
+                    tr.smallfont
+                        td
+                            img.rounded(src=`/img/${proj.Img}` style="width: 15rem; height: 12rem;object-fit: cover;")
+                        td #{proj.ProjectName}
+                        td #{proj.Desc} 
+                        td
+                            each tag in proj.Tags
+                                span.badge.me-1(style=`background:${tag.Color};`) #{tag.TagName}
+                        td #{proj.Link}
+                        td #{proj.Repo}
+                        td #{proj.CreatedDateFormatted}
+                        td.text-center
+                            div.d-flex.flex-column.p-1.justify-content-center
+                                a.btn.btn-info.btn-sm.w-100.mb-1(href=proj.Link) View
+                                form(action="/project/edit") 
+                                    input(type="hidden", name="projId", value=proj._id) 
+                                    button.btn.btn-warning.btn-sm.w-100.mb-1(type="submit") Edit
+                                form(method="get", action="/project/delete")
+                                    input(type="hidden", name="projId", value=proj._id)
+                                    button.btn.btn-danger.btn-sm.w-100(type="submit") Delete
+
+
+

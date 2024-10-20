@@ -1,0 +1,40 @@
+extend layout 
+
+block layout-content 
+    div.container.mx-5
+        h1.text-center.border-bottom.p-2 #{title} 
+        div.container.mx-2.mt-4
+            div.row 
+                div.col-md-8
+                    div.row 
+                        p.fw-bolder.col-md-4 API Url 
+                        p.col-md-3.badge.bg-light.rounded-pill.text-dark.border.border-secondary /api/tag/list
+                    div.row
+                        p.fw-bolder.col-md-4 Tag Standard Object 
+                        pre.col-md-8.border.border-secondary.bg-light.p-2.rounded-3!= tagEg
+            table.table.table-striped.mb-2.mx-auto
+                thead
+                    tr.table-dark.fs-6.text-center
+                        th Property
+                        th Type 
+                        th Example
+                    tr.text-center
+                        td 
+                            span.badge.bg-light.rounded-pill.text-dark.border.border-secondary Tag Name
+                        td String 
+                        td 
+                            span.badge.bg-light.rounded-pill.text-dark.border.border-secondary html
+                            |, 
+                            span.badge.bg-light.rounded-pill.text-dark.border.border-secondary css
+                            |, 
+                            span.badge.bg-light.rounded-pill.text-dark.border.border-secondary javascript
+                    tr.text-center
+                        td 
+                            span.badge.bg-light.rounded-pill.text-dark.border.border-secondary Color
+                        td String 
+                        td(style="background:#0d6efd;") #0d6efd
+                    tr.text-center 
+                        td 
+                            span.badge.bg-light.rounded-pill.text-dark.border.border-secondary CreatedDate
+                        td Date 
+                        td 2024-01-01T00:00:00.000Z

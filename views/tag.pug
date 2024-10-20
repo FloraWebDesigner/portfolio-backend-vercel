@@ -1,0 +1,21 @@
+extend layout 
+
+block layout-content 
+    .container.d-flex.flex-row.justify-content-evenly.align-items-center.mt-2
+        h1 #{title}
+        a.btn.btn-primary(href="tag/add") Add Tags
+    div.container.d-flex.flex-row.flex-wrap.justify-content-start.align-items-center
+        each t in myTag
+            .card.border.border-3.border-light.text-dark.shadow.m-3(style=`width: 12rem;background: ${t.Color};`)
+                .card-body.text-center     
+                    .card-title #{t.TagName}
+                    .card-text #{t.Color}
+                    .card-text #{t.CreatedDateFormatted}
+                    div.btn-group.mt-1
+                        form(action="/tag/edit") 
+                            input(type="hidden", name="tagId", value=t._id) 
+                            button.btn.btn-primary.btn-sm.me-2(type="submit") Edit
+                        form(method="get", action="/tag/delete")
+                            input(type="hidden", name="tagId", value=t._id)
+                            button.btn.btn-danger.btn-sm(type="submit") Delete
+
