@@ -89,7 +89,8 @@ async function addProject(newProject) {
 async function getProjects() {
     await connect();
     // for sort(), you can use "asc", "desc", (or 1, -1)
-    return await Project.find({}).populate('Tags').sort({ CreatedDate: -1 }); 
+    // return await Project.find({}).populate('Tags').sort({ CreatedDate: -1 }); 
+    return await Project.find({}).populate('Tags').sort({ ProjectName: 1 }); 
 }
 
 async function getOneProj(id) {
