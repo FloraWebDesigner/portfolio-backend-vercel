@@ -131,6 +131,8 @@ app.get("/project/edit", async (request, response) => {
         let projToEdit = await projFunc.getOneProj(request.query.projId);
         let projList = await projFunc.getProjects();
         let tagList = await tagFunc.getTags();
+        console.log(projToEdit);
+        console.log(tagList);
         response.render("project-edit", { title: "Edit the Project", myProj: projList, editProj: projToEdit,myTag:tagList });
     }
     else {
