@@ -4,23 +4,23 @@ block layout-content
     .container.d-flex.flex-row.justify-content-between.align-items-center.mt-2
         h1.text-center #{title} 
         a.btn.btn-primary(href="/project/add") Add Project
-    div.container
-        table.table.table.table-striped.my-3
+    div.container-fluid
+        table.table.table-striped.my-3(style="table-layout: fixed; width: 100%;")
             thead
                 tr.table-dark.fs-6.text-center
-                    th.col-1 Image
-                    th.col-2 Project Name
-                    th.col-3 Description
-                    th.col-1 Tag
-                    th.col-1 Project Link 
-                    th.col-1 Repo Link 
-                    th.col-1 Created
-                    th.col-2 Operation
+                    th(style="width: 15%;") Image
+                    th(style="width: 10%;") Project Name
+                    th(style="width: 20%;") Description
+                    th(style="width: 10%;") Tag
+                    th(style="width: 13%;") Project Link
+                    th(style="width: 13%;") Repo Link
+                    th(style="width: 9%;") Created
+                    th(style="width: 10%;") Operation
             tbody  
                 each proj in myProj
                     tr.smallfont
                         td
-                            img.rounded(src=`/img/${proj.Img}` style="width: 15rem; height: 12rem;object-fit: cover;")
+                            img.rounded(src=`/img/${proj.Img}` style="max-width: 100%; height: auto;")
                         td #{proj.ProjectName}
                         td #{proj.Desc} 
                         td

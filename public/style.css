@@ -31,3 +31,28 @@ body {
     margin-left: 6em;
     margin-right: 6em;
 }
+
+.dropdown-item:hover{
+    background: lightblue !important;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%; 
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+}
+
+td, th {
+    text-align: center; 
+    vertical-align: middle; 
+    overflow: hidden; 
+}
+
+img {
+    max-width: 100%;
+    height: auto; 
+    display: block; 
+    margin: 0 auto; 
+}

@@ -3,7 +3,7 @@ extends layout
 block layout-content 
     h1.text-center.border.border-bottom.p-2 #{title} 
     div.container.row.justify-content-center
-            form.col-md-6.p-3.bg-success-subtle.rounded-3(method="post", action="/project/add/submit",enctype="multipart/form-data")
+            form.col-md-6.offset-md-3.p-3.bg-success-subtle.rounded-3(method="post", action="/project/add/submit",enctype="multipart/form-data")
                 div.row.mb-2
                     div.col-sm-3
                         label.form-label(for="projName") Project Name: 
