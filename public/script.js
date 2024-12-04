@@ -1,5 +1,10 @@
 window.onload = onLoad;
 function onLoad() {
+
+  const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+  const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+
+
 let imgPreview= document.getElementById("preview");
 let imgName = document.getElementById("screen");
 console.log(imgPreview);

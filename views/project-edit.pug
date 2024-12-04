@@ -12,9 +12,14 @@ block layout-content
                         input.form-control(type="text", id="projName", name="projName", value=editProj.ProjectName required)
                 div.row.mb-2
                     div.col-sm-3
-                        label.form-label(for="desc") Description: 
+                        label.form-label(for="desc") Details: 
                     div.col-sm-9
                         textarea.form-control(id="desc", name="desc")=editProj.Desc
+                div.row.mb-2
+                    div.col-sm-3
+                        label.form-label(for="details") Details: 
+                    div.col-sm-9
+                        textarea.form-control(id="details", name="details")=editProj.Details
                 div.row.mb-2
                     div.row
                         div.col-sm-5

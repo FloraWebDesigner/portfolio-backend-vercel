@@ -11,27 +11,27 @@ block layout-content
                     th(style="width: 15%;") Image
                     th(style="width: 10%;") Project Name
                     th(style="width: 20%;") Description
+                    th(style="width: 26%;") Details
                     th(style="width: 10%;") Tag
-                    th(style="width: 13%;") Project Link
-                    th(style="width: 13%;") Repo Link
+                    //- th(style="width: 13%;") Project Link
+                    //- th(style="width: 13%;") Repo Link
                     th(style="width: 9%;") Created
                     th(style="width: 10%;") Operation
             tbody  
                 each proj in myProj
                     tr.smallfont
                         td
-                            img.rounded(src=`/img/${proj.Img}` style="max-width: 100%; height: auto;")
+                            img.rounded(src=`/img/${proj.Img}` style="max-width: 100%; height: auto;" data-bs-toggle="tooltip" data-bs-title=proj.Repo)
                         td #{proj.ProjectName}
-                        td #{proj.Desc} 
+                        td.text-start #{proj.Desc} 
+                        td.text-start #{proj.Details}
                         td
                             each tag in proj.Tags
                                 span.badge.me-1(style=`background:${tag.Color};`) #{tag.TagName}
-                        td #{proj.Link}
-                        td #{proj.Repo}
                         td #{proj.CreatedDateFormatted}
                         td.text-center
                             div.d-flex.flex-column.p-1.justify-content-center
-                                a.btn.btn-info.btn-sm.w-100.mb-1(href=proj.Link) View
+                                a.btn.btn-info.btn-sm.w-100.mb-1(href=proj.Link data-bs-toggle="tooltip" data-bs-title=proj.Link) View
                                 form(action="/project/edit") 
                                     input(type="hidden", name="projId", value=proj._id) 
                                     button.btn.btn-warning.btn-sm.w-100.mb-1(type="submit") Edit

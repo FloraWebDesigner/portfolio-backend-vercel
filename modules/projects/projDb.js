@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 import connect from '../Connection/db.js';
 import { ObjectId } from "mongodb";
 import tagFunc from '../tags/tagDb.js';
+import { text } from "stream/consumers";
 const { Tag } = tagFunc;
 
 //const dbUrl = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PWD}@${process.env.DB_ATLAS}`;
@@ -11,6 +12,7 @@ const { Tag } = tagFunc;
 const ProjSchema = new mongoose.Schema({
     ProjectName: String,
     Desc: String,
+    Details: String,
     Tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
     Img: String,
     Link: String,
@@ -36,6 +38,7 @@ async function initializeProjects() {
         {
             ProjectName: "Template Project",
             Desc: "This is a template project for users to edit",
+            Details: "This is a template project for users to edit",
             Tags: [tag._id],
             Img: "placeholder.png",
             Link: "http://www.google.com",
@@ -76,11 +79,12 @@ async function addProject(newProject) {
     let projectData = {
         ProjectName: newProject.ProjectName,
         Desc: newProject.Desc,
+        Details: newProject.Details,
         Tags: tags.map(tag => tag._id), 
         Img: newProject.Img,
         Link: newProject.Link,
         Repo: newProject.Repo,
-        CreatedDate: newProject.CreatedDate,
+        CreatedDate: newProject.CreatedDate
     };
     await Project.create(projectData);
 }
@@ -108,6 +112,7 @@ async function updateProj(filter,updatedProj) {
     let updateFields = {
         "ProjectName": updatedProj.ProjectName,
         "Desc": updatedProj.Desc,
+        "Details":updatedProj.Details,
         "Tags": tags.map(tag => tag._id),
         //"Img": updatedProj.Img,
         "Link": updatedProj.Link,

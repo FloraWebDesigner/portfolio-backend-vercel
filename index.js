@@ -108,6 +108,7 @@ app.post("/project/add/submit",upload.single('screen'), async (request, response
     let newproj = {
         ProjectName: request.body.projName, 
         Desc: request.body.desc,
+        Detail: request.body.details,
         Tags: Array.isArray(request.body.tag) ? request.body.tag : [request.body.tag],
         Img: request.file.filename,
         Link: request.body.link,
@@ -147,6 +148,7 @@ app.post("/project/edit/submit", upload.single('screen'),async (request, respons
     let updatedProj = {
         "ProjectName": request.body.projName,
         "Desc": request.body.desc,
+        "Details": request.body.details,
         "Tag": Array.isArray(request.body.tag) ? request.body.tag : [request.body.tag],
         "Img": request.file ? request.file.filename : request.body.oldImg,
         "Link": request.body.link,
