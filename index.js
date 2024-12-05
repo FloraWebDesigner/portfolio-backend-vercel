@@ -108,7 +108,7 @@ app.post("/project/add/submit",upload.single('screen'), async (request, response
     let newproj = {
         ProjectName: request.body.projName, 
         Desc: request.body.desc,
-        Detail: request.body.details,
+        Details: request.body.details,
         Tags: Array.isArray(request.body.tag) ? request.body.tag : [request.body.tag],
         Img: request.file.filename,
         Link: request.body.link,
