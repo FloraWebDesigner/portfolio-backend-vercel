@@ -29,33 +29,18 @@ app.use(cors({
     origin: '*'
 }));
 
-// img upload
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, 'public/img')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.originalname)
-    }
-})
+
+const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.static('public/img'));
-var upload = multer({ storage: storage });
 
-app.use(express.static(path.join(__dirname, "public")));
-
-//https://medium.com/swlh/how-to-upload-image-using-multer-in-node-js-f3aeffb90657
-app.post('/img', upload.single('screen'), function (req, res, next) {
-    // req.file is the `screen` file
-    // req.body will hold the text fields, if there were any
-    console.log(JSON.stringify(req.file))
-    var response = '<a href="/">Home</a><br>'
-    response += "Files uploaded successfully.<br>"
-    response += `<img src="/img/${req.file.path}" /><br>`
-    return res.send(response);
-  })
+app.use(express.static(path.join(process.cwd(), 'public')));
 
 
+app.post('/img', upload.single('screen'), (req, res) => {
+    const fileBuffer = req.file.buffer; 
+    res.send('Uploaded!');
+  });
 
 // project - api
 app.get("/api/project/list", async (req, res) => {
@@ -140,9 +125,9 @@ app.get("/project/edit", async (request, response) => {
         response.redirect("/project");
     }
 });
+
 // project pages - edit(submit)
 app.post("/project/edit/submit", upload.single('screen'),async (request, response) => {
-    //get the _id and set it as a JSON object to be used for the filter
     let id = request.body.projId;
     let idFilter = { _id: new ObjectId(id) };
     let updatedProj = {
@@ -240,8 +225,9 @@ app.get("/tag/doc", async (request, response) => {
 });
 
 
-//set up server listening
-app.listen(port, () => {
-    console.log(`Listening on http://localhost:${port}`);
-});
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(port, () => console.log(`Local: http://localhost:${port}`));
+  }
+
+export default app;
 

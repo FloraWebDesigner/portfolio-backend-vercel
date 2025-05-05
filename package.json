@@ -1,10 +1,11 @@
 {
-  "name": "5222_portfolio",
+  "name": "portfolio",
   "version": "1.0.0",
-  "description": "This is Flora's assignment for Http5222",
+  "description": "This is Flora's portfolio",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./index.js"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
   },
   "keywords": [
     "portfolio",
@@ -24,7 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.7.7",
-    "nodemon": "^3.1.7"
+    "nodemon": "^3.1.10"
   },
   "type": "module"
 }
